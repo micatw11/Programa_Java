@@ -22,6 +22,13 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("WEB-INF/jsp/Login/login.jsp").forward(request, response);
+    }
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -38,7 +45,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("usuario", user);//implements serial
 //redirect al servlet/jsp protegido
 }else{ 
-//….forware al form de login
+//….forware al form de login 
 }
 }
 
@@ -59,43 +66,10 @@ Boolean esta_logueado = (Boolean) session.getAttribute("esta_logueado");
 
     }
 
- 
-
-  
     private Usuario getUsuarioBD(String usr, String pass) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-//    
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-//		IOException {
-//		
-//		if("login".equals(request.getParameter("accion"))){
-//			// Logueo del usuario
-//			if(request.getSession().getAttribute("user")!=null){
-//				RequestDispatcher a=request.getRequestDispatcher("index.jsp");
-//				a.forward(request, response);
-//			}
-//			login(request, response);
-//		}
-//		// ....
-//	}
-//	
-//	void login (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-//		if(request.getParameter("username")!=null && request.getParameter("password").equals(usuarioLogin.getContrasenia())){
-//			if(request.getParameter("username").equals("NombreDeUnUsuario"){
-//				HttpSession session = request.getSession();
-//				session.setAttribute("user", request.getParameter("username"));
-//				RequestDispatcher a = request.getRequestDispatcher("index.jsp");
-//				a.forward(request, response);
-//			}
-//			RequestDispatcher a = request.getRequestDispatcher("login.jsp?msg=Usuario y/o " +
-//				"contraseña incorrectos");
-//			a.forward(request, response);
-//		}
-//		RequestDispatcher a = request.getRequestDispatcher("login.jsp?msg=Usuario y/o contraseña incorrectos");
-//		a.forward(request, response);
-//	}
+
 
 }
 

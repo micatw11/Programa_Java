@@ -59,9 +59,9 @@ public class Clientes {
             pstmt.setString(2, apellido);
 //            pstmt.setString(3, fecha_nacimiento);
 //            pstmt.setInt(4, nacionalidad);
-System.out.println("execute");
+
             pstmt.execute();
-            System.out.println("paseee");
+            
         } catch (NamingException | SQLException ex) {
             Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
             return false;

@@ -68,9 +68,9 @@ public class NuevoServlet extends HttpServlet {
             request.setAttribute("nacionalidades", nacionalidades);
 
             request.setAttribute("title", "Nuevo cliente");
-            Clientes.insert("jsjs", "dfssss" );
-            //request.getRequestDispatcher("WEB-INF/jsp/cliente/nuevo.jsp").forward(request, response);
-            System.out.println("pase el insert");
+           
+            request.getRequestDispatcher("WEB-INF/jsp/cliente/nuevo.jsp").forward(request, response);
+           
         } catch (NamingException | SQLException ex) {
             Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,17 +94,17 @@ public class NuevoServlet extends HttpServlet {
             int activo = Integer.parseInt(request.getParameter("activo"));
             clientes.setActivo(activo);
             
-            java.util.Date date = new java.util.Date();
-             java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("dd-MM-yyyy");
-            java.util.Date fecha = null;
-            try {
-                fecha = formatter.parse(fecha_nacimiento);
-            } catch (ParseException ex) {
-                Logger.getLogger(NuevoServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            java.util.Date date = new java.util.Date();
+//             java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("dd-MM-yyyy");
+//            java.util.Date fecha = null;
+//            try {
+//                fecha = formatter.parse(fecha_nacimiento);
+//            } catch (ParseException ex) {
+//                Logger.getLogger(NuevoServlet.class.getName()).log(Level.SEVERE, null, ex);
+//            }
 //            Date fechaEvento = new Date(); //se crea e inicializa un objeto de tipo Date
 //            Calendar c; //Se crea un objeto de tipo calendar
-//            String fecha2; //la cadena en la que se guardará la fecha
+//           // String fecha2; //la cadena en la que se guardará la fecha
 //            /*Este proceso, es en realidad el while de la consulta que se realiza a la base de datos, para entenderlo mejor, descargar el ejemplo completo. Pero básicamente lo que se hace es, obtener la fecha en formato String, convertirla a long y asignarla al objeto tipo Date, usando el método setTime, el cual recibe un long*/
 //            fechaEvento.setTime(Long.parseLong(temp.getFecha_evento()));
 //            c = Calendar.getInstance(); //se obtiene una instancia de calendar, con la fecha actual.
@@ -113,39 +113,49 @@ public class NuevoServlet extends HttpServlet {
 //            fecha2 = Integer.toString(c.get(Calendar.DATE))+"/"+
 //            Integer.toString(c.get(Calendar.MONTH))+ "/"+Integer.toString(c.get(Calendar.YEAR));
 ////            // 
-            java.text.SimpleDateFormat formatoDelTexto = new java.text.SimpleDateFormat("dd-MM-yyyy");
+//            java.text.SimpleDateFormat formatoDelTexto = new java.text.SimpleDateFormat("dd-MM-yyyy");
+//            
+//            //String fecha2;
+//            fecha2 = formatoDelTexto.format(fecha);
+//            clientes.setFecha_nacimiento(fecha2);
+//            int edad = edad(fecha);
+//            System.out.println("set fecha que llega "+fecha+ " edad ="+edad);
+                   DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            Date fecha = null;
+                try {
+                    fecha = formatter.parse(fecha_nacimiento);
+                } catch (ParseException ex) {
+                    Logger.getLogger(NuevoServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
             
-            String fecha2;
-            fecha2 = formatoDelTexto.format(fecha);
-            clientes.setFecha_nacimiento(fecha2);
-            int edad = edad(fecha);
-            System.out.println("set fecha que llega "+fecha+ " edad ="+edad);
-             clientes.setEdad(edad);
+            // System.out.println("set fecha que llega "+fecha);
+            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
             
-            Date fecha_nac = null;
-//            SimpleDateFormat fecha_edad = new SimpleDateFormat("dd/MM/yyyy");
-//            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            String fecha2 = formatoDelTexto.format(fecha);
+            
+            
+//            Date fecha_nac = null;
+//           
+//            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 //            try {
-            //    fecha_nac = df.parse(fecha_nacimiento);
+//                fecha_nac = df.parse(fecha_nacimiento);
 //            } catch (Exception e) {
 //
 //                Logger.getLogger(NuevoServlet.class.getName()).log(Level.SEVERE, null, e);
 //            }
-//            int edad = edad(fecha_edad.format(fecha_nac));
 //            
-//            clientes.setEdad(edad);
-//            Date fecha=  new java.sql.Date(fecha_nac.getTime());
-//            
-//            
-                       String apellido2= "caseres";
-                       String nombre2= "marcela";
-                      // int documento2= 4;
-                       int edad2= 16;
-                      String fecha_nac2= "2001-03-09";
-                       int activo2= 1;
-                       int nacionalidad_id2= 1;
+//             String fechadb= df.format(fecha_nac);
+clientes.setFecha_nacimiento(fecha2);
+
+// SimpleDateFormat fecha_edad = new SimpleDateFormat("dd/MM/yyyy");
+int edad = edad(fecha);
+            
+             clientes.setEdad(edad);
+            
+            Date fecha_nac = null;
+
            
-            out.println("fecha "+ fecha_nac +" fecha2 "+fecha_nac2 +" fecha2 "+fecha2);
+           // out.println("fecha "+ fecha_nac +" fecha2 "+fecha_nac2 +" fecha2 "+fecha2);
             Context initContext = new InitialContext(); 
             Context envContext = (Context) initContext.lookup("java:comp/env");
             DataSource ds = (DataSource) envContext.lookup("jdbc/clientes_db");
@@ -184,21 +194,21 @@ public class NuevoServlet extends HttpServlet {
 //            pstmt.setInt(5, clientes.getEdad());
 //            pstmt.setInt(6, clientes.getActivo());
 //            pstmt.setInt(7, clientes.getNacionalidad());
-              pstmt.setString(1, apellido2);
-            pstmt.setString(2, nombre2);
-          //pstmt.setInt(3, documento2);
-         pstmt.setString(3,  fecha_nac2);
-            pstmt.setInt(4, edad2);
-            pstmt.setInt(5, activo2);
-            pstmt.setInt(6, nacionalidad_id2);
-           out.println("apellido nombre"+clientes.getApellido()+clientes.getNombre()+"activo y documento"
-                    +clientes.getActivo()+"fecha"+ clientes.getFecha_nacimiento() + "edad"+ clientes.getEdad()+"nacionalidad"+clientes.getNacionalidad());
-            out.println("apellido "+apellido2+"nombre"+nombre+"activo y documento"
-                    +activo2+"fecha"+ fecha_nac2 + 
-                     "edad"+ edad2+"nacionalidad"+nacionalidad_id2);
+//              pstmt.setString(1, apellido2);
+//            pstmt.setString(2, nombre2);
+//          //pstmt.setInt(3, documento2);
+//         pstmt.setString(3,  fecha_nac2);
+//            pstmt.setInt(4, edad2);
+//            pstmt.setInt(5, activo2);
+//            pstmt.setInt(6, nacionalidad_id2);
+//           out.println("apellido nombre"+clientes.getApellido()+clientes.getNombre()+"activo y documento"
+//                    +clientes.getActivo()+"fecha"+ clientes.getFecha_nacimiento() + "edad"+ clientes.getEdad()+"nacionalidad"+clientes.getNacionalidad());
+//            out.println("apellido "+apellido2+"nombre"+nombre+"activo y documento"
+//                    +activo2+"fecha"+ fecha_nac2 + 
+//                     "edad"+ edad2+"nacionalidad"+nacionalidad_id2);
 
             pstmt.execute();  
-            out.println("entreee");
+            //out.println("entreee");
             request.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(request, response);
 
         } catch (NamingException | SQLException ex) {
