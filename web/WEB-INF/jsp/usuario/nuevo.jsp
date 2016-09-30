@@ -35,7 +35,16 @@
                         <input type="date" id="fecha_nac" name="fecha_nac" class="form-control" placeholder="dd/mm/aaaa" required autofocus>
                     </div>
                 </div>
-                
+                      <div class="form-group">
+                <label>Contraseña:</label><br>
+                <input type="password" name="password" size="8" maxlength="50" class="form-control" id="password" required>
+                <br><br>
+            </div>
+                      <div class="form-group">
+                <label>Repetir Contraseña:</label><br>
+                <input type="password" name="password" size="8" maxlength="50" class="form-control" id="password" required>
+                <br><br>
+            </div>
              
             
                 <div class="form-group">
