@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <label class="col-xs-4 control-label" for="fecha_nac"><b>Fecha de nacimiento:</b></label>
                     <div class="col-xs-8">
-                        <input type="date" id="fecha_nac" name="fecha_nac" class="form-control" placeholder="dd/mm/aaaa" required autofocus>
+                        <input type="date" id="fecha_nac" name="fecha_nac" class="form-control" placeholder="aaaa-mm-dd" required autofocus>
                     </div>
                 </div>
                       <div class="form-group">
@@ -45,6 +45,17 @@
                 <input type="password" name="password" size="8" maxlength="50" class="form-control" id="password" required>
                 <br><br>
             </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="activo"><b>Activo:</b></label>
+                    <div class="col-xs-8">
+                         <c:forEach items="${nacionalidades}" var="nacionalidades" > 
+                             <input type="radio" id="activo" name="activo" value="<c:out value="${nacionalidades.id}"/>" checked> <c:out value="${nacionalidades.descripcion}"/> <br>
+                            
+                            </c:forEach>
+                       
+                       
+                    </div>
+                </div>
              
             
                 <div class="form-group">

@@ -47,7 +47,7 @@ public class DBServlet extends HttpServlet {
            
             Context initContext = new InitialContext(); 
             Context envContext = (Context) initContext.lookup("java:comp/env");
-            DataSource ds = (DataSource) envContext.lookup("jdbc/clientes_db");
+            DataSource ds = (DataSource) envContext.lookup("jdbc/Base_Datos");
              
             conn = ds.getConnection();
           
@@ -56,7 +56,7 @@ public class DBServlet extends HttpServlet {
                 throw new IllegalAccessException("Error: debe especificar la edad");
             }
            
-            String sql = "SELECT * FROM clientes_db.clientes WHERE edad >= ?";
+            String sql = "SELECT * FROM Base_Datos.clientes WHERE edad >= ?";
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, edad);

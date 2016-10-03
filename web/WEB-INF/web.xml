@@ -20,6 +20,10 @@
         <servlet-name>VerServlet</servlet-name>
         <servlet-class>servlet.VerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>servlet.IndexServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -40,4 +44,15 @@
         <servlet-name>VerServlet</servlet-name>
         <url-pattern>/ver</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IndexServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <resource-ref>
+        <description>jdbc:mysql://localhost:3306/Base_Datos</description>
+        <res-ref-name>Base_Datos</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
 </web-app>

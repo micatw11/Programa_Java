@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 //valida datos
 
 //buscar el usuario en la base
-        Usuario user = getUsuarioBD(usr, pass);
+        Usuario user = Usuario.getUsuario(usr, pass);
 
         if (user != null) {
             HttpSession session = request.getSession();//recupero sesion o crea una nueva

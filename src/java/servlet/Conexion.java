@@ -22,7 +22,7 @@ public class Conexion {
      
         Context initContext = new InitialContext();
         Context envContext = (Context) initContext.lookup("java:comp/env");
-        DataSource ds = (DataSource) envContext.lookup("jdbc/clientes_db");
+        DataSource ds = (DataSource) envContext.lookup("jdbc/Base_Datos");
         Connection conn = ds.getConnection();
         return conn;
         

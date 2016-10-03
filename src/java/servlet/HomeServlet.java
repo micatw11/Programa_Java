@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import datos.Clientes;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,34 +35,18 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-        
+            
             response.setContentType("text/html;charset=UTF-8");
             
-            Connection conn = Conexion.getConnection();
-            
-            String sql = "SELECT * FROM clientes_db.clientes";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
-
-            List <HashMap<String, Object>> resultado = new LinkedList();
-            
-                while(rs.next()){
-                    HashMap row = new HashMap();
-                    row.put("id", rs.getInt("id"));
-                    row.put("nombre", rs.getString("nombre"));
-                    row.put("apellido", rs.getString("apellido"));
-                    row.put("fecha_nac", rs.getDate("fecha_nac"));
-                    row.put("activo", rs.getInt("activo"));
-                    resultado.add(row);
-                }
-            
+            List <HashMap<String, Object>> resultado =null;
+            resultado= Clientes.ClientesListado();
             request.setAttribute("resultado", resultado);
 
             request.setAttribute("title", "Listado de clientes");
 
             request.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(request, response);
             
-        } catch (NamingException | SQLException ex) {
+        } catch (NamingException ex) {
             Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

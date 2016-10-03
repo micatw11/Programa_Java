@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../layout.jsp"></jsp:include>
 
     <body>
@@ -18,6 +19,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-xs-4 control-label" for="documento"><b>Documento de identidad:</b></label>
+                    <div class="col-xs-8">
+                        <input type="num" id="documento" name="documento" maxlength="9" min="6" class="form-control" placeholder="Ingrese su documento"  required autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-xs-4 control-label" for="fecha_nac"><b>Fecha de nacimiento:</b></label>
                     <div class="col-xs-8">
                         <input type="date" id="fecha_nac" name="fecha_nac" class="form-control" placeholder="dd/mm/aaaa" required autofocus>
@@ -33,13 +40,6 @@
                                 <option value="<c:out value="${nacionalidades.id}"/>"> <c:out value="${nacionalidades.descripcion}  ${nacionalidades.iso}"/></option>
                             </c:forEach>
                         </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-xs-4 control-label" for="activo"><b>Activo:</b></label>
-                    <div class="col-xs-8">
-                        <input type="radio" id="activo" name="activo" value="1" checked> Si<br>
-                        <input type="radio" id="activo" name="activo" value="0"> No<br>
                     </div>
                 </div>
                 <div class="form-group">
